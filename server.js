@@ -9,17 +9,15 @@ app.use(express.json());
 
 // Nodemailer SMTP transporter
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // false = STARTTLS optional
-    tls: {
-        rejectUnauthorized: false, // allow self-signed certificates
-    },
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_APP_PASSWORD,
-    },
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // SSL from the start
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_APP_PASSWORD,
+  },
 });
+
 
 // Test route to send email
 app.post("/send-email", async (req, res) => {
